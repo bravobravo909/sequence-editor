@@ -1,0 +1,112 @@
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: #1e1e1e;
+    color: white;
+    padding: 20px;
+}
+
+h3 {
+    margin-bottom: 12px;
+}
+
+#gradient-container {
+    position: relative;
+    height: 50px;
+    margin-bottom: 60px;
+}
+
+#gradient-bar {
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid #555;
+    cursor: pointer;
+}
+
+.stop {
+    position: absolute;
+    top: 45px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid rgb(255, 255, 255);
+    cursor: grab;
+    transform: translateX(-50%);
+}
+
+.stop:hover {
+    transform: translateX(-50%) scale(1.2);
+}
+
+.label {
+    position: absolute;
+    top: 76px;
+    font-size: 12px;
+    transform: translateX(-50%);
+    opacity: 0.7;
+}
+
+#controls {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    background: #007acc;
+    border: none;
+    padding: 6px 12px;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#delete {
+    background: #ff2b2b;
+    border: none;
+    padding: 6px 12px;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0a84ff;
+}
+
+#preset-controls{
+    display:flex;
+    gap:6px;
+    margin-top:6px;
+}
+
+.stop.selected{
+    outline:2px solid #00b7ff;
+    transform:translate(-50%, -50%) scale(1.2);
+}
+
+#presetName{
+    flex:1;
+    padding:4px;
+    background:#1e1e1e;
+    color:white;
+    border:1px solid #444;
+}
+#preset-bar{
+    display:flex;
+    gap:6px;
+    margin-top:8px;
+    flex-wrap:wrap;
+}
+.label.selected{
+    color:#00b7ff;
+}
+
+.preset{
+    width:60px;
+    height:18px;
+    border-radius:4px;
+    border:1px solid #444;
+    cursor:pointer;
+}
+
+.preset:hover{
+    outline:2px solid #888;
+}
