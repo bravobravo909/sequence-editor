@@ -1,4 +1,4 @@
-# VSCExtension – Roblox Sequence Editor
+# sequence-editor – Roblox Sequence Editor
 
 A Visual Studio Code extension that lets you **edit Roblox ColorSequence and NumberSequence values visually** instead of manually writing keypoints.
 

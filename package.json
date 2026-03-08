@@ -2,7 +2,8 @@
   "name": "sequence-editor",
   "displayName": "vscextension",
   "description": "im bad with JS oke?",
-  "version": "0.0.1",
+  "version": "1.0.0-alpha",
+  "publisher": "bravobravo909",
   "engines": {
     "vscode": "^1.109.0"
   },
@@ -32,5 +33,9 @@
     "eslint": "^9.39.3",
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2"
+  },
+  "repository": {
+    "url": "https://github.com/bravobravo909/sequence-editor",
+    "type": "git"
   }
 }
