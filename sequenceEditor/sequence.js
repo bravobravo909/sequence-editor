@@ -6,6 +6,9 @@ const ctx = canvas.getContext("2d");
 
 const deleteBtn = document.getElementById("delete");
 const applyBtn = document.getElementById("apply");
+const resetBtn = document.getElementById("reset");
+const closeBtn = document.getElementById("close");
+
 const vscode = acquireVsCodeApi();
 
 const MAX_KEYS = 20;
@@ -15,7 +18,10 @@ let keys = [
     { time: 0, value: 0, envelope: 0 },
     { time: 1, value: 1, envelope: 0 }
 ];
-
+const originalKeys = JSON.parse(JSON.stringify(window.initialKeys || [
+    { time: 0, value: 0, envelope: 0 },
+    { time: 1, value: 1, envelope: 0 }
+]));
 if (window.initialKeys && Array.isArray(window.initialKeys) && window.initialKeys.length) {
     keys = window.initialKeys;
 }
@@ -369,7 +375,6 @@ container.onclick = e => {
 
     const sorted = [...keys].sort((a,b)=>a.time-b.time);
 
-    // find the segment the click is in
     let left = sorted[0];
     let right = sorted[sorted.length-1];
 
@@ -388,7 +393,7 @@ container.onclick = e => {
 
     const curveY = (1 - value) * rect.height;
 
-    const HITBOX = 14; // bigger = easier clicking
+    const HITBOX = 14; 
 
     if(Math.abs(mouseY - curveY) > HITBOX) return;
 
@@ -442,12 +447,28 @@ applyBtn.onclick = () => {
     });
 
 };
+
+closeBtn.onclick = () => {
+    vscode.postMessage({
+        type: "close"
+    });
+}
+
+
+
 function redraw(){
     sortKeys();
     drawGraph();
     drawKeys();
     drawKeypointsPanel();
 }
+
+
+resetBtn.onclick = () => {
+    keys = JSON.parse(JSON.stringify(originalKeys));
+    selected = null;
+    redraw();
+};
 
 redraw();
 new ResizeObserver(() => {

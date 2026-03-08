@@ -169,6 +169,10 @@ function activate(context) {
 		panel.webview.html = html;
 
 		panel.webview.onDidReceiveMessage(message => {
+			if (message.type==="close"){
+				panel.dispose();
+				return;
+			}
 			if (message.type === "applyColorSequence") {
 				const text = doc.getText(range);
 
@@ -290,6 +294,10 @@ function activate(context) {
 
 		panel.webview.onDidReceiveMessage(message=>{
 
+			if (message.type==="close"){
+				panel.dispose();
+				return;
+			}
 			if(message.type==="applyNumberSequence"){
 
 				const text = doc.getText(range);

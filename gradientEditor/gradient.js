@@ -4,6 +4,9 @@ const bar = document.getElementById("gradient-bar");
 const container = document.getElementById("gradient-container");
 const colorPicker = document.getElementById("colorPicker");
 const deleteBtn = document.getElementById("delete");
+const closeBtn = document.getElementById("close");
+const resetBtn = document.getElementById("reset");
+
 const vscode = acquireVsCodeApi();
 let selected = null;
 
@@ -11,7 +14,10 @@ let stops = [
     {pos:0,color:"#ff0000"},
     {pos:1,color:"#0000ff"}
 ];
-console.log("initialStops:", window.initialStops);
+const originalKeys = JSON.parse(JSON.stringify(window.initialStops || [
+    {pos:0,color:"#ff0000"},
+    {pos:1,color:"#0000ff"}
+]));
 if (window.initialStops && Array.isArray(window.initialStops) && window.initialStops.length) {
     stops = window.initialStops;
 }
@@ -36,6 +42,11 @@ function drawGradient(){
     bar.style.background=`linear-gradient(to right,${css})`;
 
     document.querySelectorAll(".stop,.label").forEach(e=>e.remove());
+    if  (selected !== null)  {
+        colorPicker.value=selected.color;
+    }else{
+        colorPicker.value="#000000"
+    }
 
     sorted.forEach(stop=>{
         createStop(stop);
@@ -231,7 +242,9 @@ function drawPresets(){
 }
 
 bar.onclick=(e)=>{
-
+    if (stops.length >= 20) {
+        return; 
+    }
     const rect=bar.getBoundingClientRect();
     const pos=(e.clientX-rect.left)/rect.width;
 
@@ -313,6 +326,17 @@ saveBtn.onclick = () => {
 
     drawPresets();
 };
+
+closeBtn.onclick = () => {
+    vscode.postMessage({
+        type: "close"
+    });
+}
+resetBtn.onclick = () => {
+    stops = JSON.parse(JSON.stringify(originalKeys));
+    selected = null;
+    drawGradient();
+}
 
 drawGradient();
 drawPresets();
