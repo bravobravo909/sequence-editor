@@ -234,7 +234,6 @@ function dragEnvelope(e, key, side) {
 function startDrag(e, key) {
 
     e.stopPropagation();
-    e.preventDefault();
     selected = key;   
     redraw();
     function move(ev) {

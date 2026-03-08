@@ -166,7 +166,8 @@ function startDrag(e,stop,handle,label){
         const rect=bar.getBoundingClientRect();
         let x=(ev.clientX-rect.left)/rect.width;
 
-        x=Math.max(0,Math.min(1,x));
+        x = Math.max(0.001, Math.min(0.999, x));
+
 
         stop.pos=x;
 
