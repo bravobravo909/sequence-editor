@@ -173,8 +173,17 @@ function activate(context) {
 				const text = doc.getText(range);
 
 				if (text.includes("ColorSequence.new")) {
+
+					const lineText = doc.lineAt(startLine).text;
+					const indent = lineText.match(/^\s*/)[0];
+
+					const formatted = message.value
+						.split("\n")
+						.map((line, i) => i === 0 ? line : indent + line)
+						.join("\n");
+
 					editor.edit(edit => {
-						edit.replace(range, message.value);
+						edit.replace(range, formatted);
 					});
 				}
 				panel.dispose();
@@ -286,8 +295,16 @@ function activate(context) {
 				const text = doc.getText(range);
 
 				if(text.includes("NumberSequence.new")){
-					editor.edit(edit=>{
-						edit.replace(range,message.value);
+					const lineText = doc.lineAt(startLine).text;
+					const indent = lineText.match(/^\s*/)[0];
+
+					const formatted = message.value
+						.split("\n")
+						.map((line, i) => i === 0 ? line : indent + line)
+						.join("\n");
+
+					editor.edit(edit => {
+						edit.replace(range, formatted);
 					});
 				}
 
