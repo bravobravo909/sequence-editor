@@ -2,7 +2,7 @@
   "name": "sequence-editor",
   "displayName": "vscextension",
   "description": "im bad with JS oke?",
-  "version": "1.0.0-alpha",
+ "version": "1.0.0",
   "publisher": "bravobravo909",
   "engines": {
     "vscode": "^1.109.0"
